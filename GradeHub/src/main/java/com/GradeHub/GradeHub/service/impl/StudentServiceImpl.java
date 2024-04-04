@@ -16,9 +16,10 @@ public class StudentServiceImpl  implements StudentService {
         this.studentRepository = studentRepository;
     }
 
+
     @Override
     public List<Student> getAllStudent(){
-        return null;
+        return studentRepository.findAll();
     }
 
 }
