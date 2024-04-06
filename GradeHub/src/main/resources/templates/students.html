@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>GradeHub</title>
@@ -23,6 +23,13 @@
             </tr>
 
             </thead>
+            <tbody>
+                <tr th:each = "student:${students}">
+                    <td th:text = "${student.firstname}"></td>
+                    <td th:text = "${student.lastname}"></td>
+                    <td th:text = "${student.email}"></td>
+                </tr>
+            </tbody>
 
         </table>
     </div>
