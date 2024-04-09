@@ -1,2 +1,0 @@
-# GradeHub
- Group Project
