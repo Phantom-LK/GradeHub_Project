@@ -21,20 +21,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebsecurityConfiguration {
 
     @Autowired
-    private JwtReqestFilter authFilter;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/authenticate", "/sign-up").permitAll()
+                .requestMatchers("/authenticate").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/api/**")
+                .authorizeHttpRequests().requestMatchers("")
                 .authenticated().and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
     @Bean
