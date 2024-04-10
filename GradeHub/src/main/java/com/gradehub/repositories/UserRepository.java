@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface UserRepository  extends JpaRepository<User, Long> {
     User findByRole(UserRole userRole);
 
-    Optional<User> findFirstByEmail(String email);
+    Optional<org.springframework.security.core.userdetails.User> findFirstByEmail(String email);
 }
