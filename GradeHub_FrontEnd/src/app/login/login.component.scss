@@ -1,0 +1,29 @@
+.parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.child{
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-title{
+    margin-left: 170px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-form-field{
+    width: 100%;
+    max-width: 100%;
+}
+
+button{
+    width:100%
+}
