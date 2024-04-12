@@ -13,3 +13,15 @@
 .spacer{
     flex: 1;
 }
+button{
+    color: white;
+    text-transform: uppercase;
+    margin-left: 8px;
+}
+
+button.active{
+    font-weight: 600;
+}
+.custom-toolbr{
+    background-color: #ff0000;
+}
