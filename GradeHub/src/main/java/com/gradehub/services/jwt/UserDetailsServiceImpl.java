@@ -16,7 +16,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<User> userOptional = userRepository.findFirstByEmail(email);
+        Optional<com.gradehub.entities.User> userOptional = userRepository.findFirstByEmail(email);
         if (userOptional.isEmpty()) throw new UsernameNotFoundException("Username not found",null);
         return new org.springframework.security.core.userdetails.User(userOptional.get().getUsername(),userOptional.get().getPassword(),new ArrayList<>());
     }
