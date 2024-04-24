@@ -38,18 +38,22 @@ export class StorageService {
 
   static isAdminLoggedIn(): boolean{
     if(this.getToken()== null){
-      return true;
+      return false;
     }
     const role: string= this.getUserRole();
     return role== "ADMIN";
 
   }
-  static isStudentLoggedIn(){
+  static isStudentLoggedIn():boolean{
     if(this.getToken()== null){
-      return true;
+      return false;
     }
     const role: string= this.getUserRole();
     return role== "STUDENT";
 
+  }
+  static  logout(){
+    window.localStorage.removeItem(TOKEN);
+    window.localStorage.removeItem(USER);
   }
 }

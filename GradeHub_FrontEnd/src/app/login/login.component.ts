@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { response } from 'express';
 import { StorageService } from '../services/storage/storage.service';
 import { Router } from '@angular/router';
+import { error } from 'console';
+import { MatAnchor } from '@angular/material/button';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +20,8 @@ export class LoginComponent {
   constructor(
     private service: ServicesService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private snackbar:MatSnackBar
 
   ){}
 
@@ -40,7 +44,18 @@ export class LoginComponent {
       this.router.navigateByUrl( "student/dashbord");
 
     }
-  })
+  }),
+  error =>{
+    if(error.status == 406){
+      this.snackbar.open("user is not active","Close",{
+        duration:5000
+      });
+    } else{
+      this.snackbar.open("Invalid Credentials","Close",{
+        duration:5000
+      });
+    }
+  }
  } 
 
 }
