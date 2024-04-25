@@ -3,6 +3,8 @@ package com.gradehub.entities;
 import com.gradehub.enums.UserRole;
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -13,7 +15,16 @@ public class User {
     private String email;
     private String password;
 
+    private String fatherName;
+    private String motherName;
+    private String faculty;
+    private Date dob;
+    private String address;
+    private String gender;
+
     private UserRole role;
+
+
 
     public Long getId() {
         return id;
