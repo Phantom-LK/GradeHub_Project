@@ -1,17 +1,9 @@
-package com.gradehub.entities;
-
-import com.gradehub.dto.StudentDto;
-import com.gradehub.enums.UserRole;
-import jakarta.persistence.*;
-import org.springframework.beans.BeanUtils;
+package com.gradehub.dto;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class StudentDto {
+
     private Long id;
     private String name;
     private String email;
@@ -23,10 +15,6 @@ public class User {
     private Date dob;
     private String address;
     private String gender;
-
-    private UserRole role;
-
-
 
     public Long getId() {
         return id;
@@ -58,18 +46,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public UserRole getRole() {
-        return role;
-    }
-
-    public void setRole(UserRole role) {
-        this.role = role;
-    }
-
-    public String getUsername() {
-        return null;
     }
 
     public String getFatherName() {
@@ -119,21 +95,4 @@ public class User {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-    public StudentDto getStudentDto(){
-        StudentDto studentDto = new StudentDto();
-        studentDto.setId(id);
-        studentDto.setName(name);
-        studentDto.setEmail(email);
-        studentDto.setAddress(address);
-        studentDto.setDob(dob);
-        studentDto.setFaculty(faculty);
-        studentDto.setGender(gender);
-        studentDto.setFatherName(fatherName);
-        studentDto.setMotherName(motherName);
-        return studentDto;
-    }
-
-
-
 }
