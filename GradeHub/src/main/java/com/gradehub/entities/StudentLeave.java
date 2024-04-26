@@ -1,6 +1,7 @@
 package com.gradehub.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.gradehub.dto.StudentLeaveDto;
 import com.gradehub.enums.StudentLeaveStatus;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Entity
 @Data
 public class StudentLeave {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,4 +28,15 @@ public class StudentLeave {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;
+
+    public StudentLeaveDto getStudentLeaveDto(){
+        StudentLeaveDto studentLeaveDto = new StudentLeaveDto();
+        studentLeaveDto.setId(id);
+        studentLeaveDto.setSubject(subject);
+        studentLeaveDto.setBody(body);
+        studentLeaveDto.setDate(date);
+        studentLeaveDto.setStudentLeaveStatus(studentLeaveStatus);
+        studentLeaveDto.setUserid(user.getId());
+        return studentLeaveDto;
+    }
 }

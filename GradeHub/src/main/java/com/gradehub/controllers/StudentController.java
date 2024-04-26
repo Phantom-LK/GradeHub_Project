@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/student")
 @RequiredArgsConstructor
@@ -28,6 +30,14 @@ public class StudentController {
             return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
         return ResponseEntity.status(HttpStatus.CREATED).body(submittedStudentLeaveDto);
     }
+
+    @GetMapping("/leave/{userId}")
+    public ResponseEntity<List<StudentLeaveDto>> getallApppliedLeavesByStudentId (@PathVariable Long userId){
+        List<StudentLeaveDto> studentLeaveDtos = (List<StudentLeaveDto>) studentService.getallApppliedLeavesByStudentId(userId);
+        if (studentLeaveDtos == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(studentLeaveDtos);
+    }
+
 
 
 }

@@ -7,4 +7,6 @@ public interface StudentService {
     SingleStudentDto getStudentById(Long studentId);
 
     StudentLeaveDto applyLeave(StudentLeaveDto studentLeaveDto);
+
+    SingleStudentDto getallApppliedLeavesByStudentId(Long studentId);
 }
