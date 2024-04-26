@@ -13,11 +13,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { PostStudentComponent } from './module/admin/admin-components/post-student/post-student.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    PostStudentComponent,
   ],
   imports: [
     BrowserModule,
