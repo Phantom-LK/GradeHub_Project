@@ -28,6 +28,13 @@ export class StorageService {
   static getUser():any{
     return  JSON.parse(localStorage.getItem(USER))
   }
+
+  static hasToken(): boolean{
+    if(this.getToken()==null){
+      return false;
+    }
+
+  }
   static getUserRole():string{
     const user = this.getUser();
     if(user== null){
