@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { StorageService } from '../../services/storage/storage.service';
 
@@ -6,7 +6,7 @@ import { StorageService } from '../../services/storage/storage.service';
   providedIn: "root"
 })
 
-export class noAuthGuard implements canActivate{
+export class noAuthGuard implements CanActivate{
 
   constructor(
     private router: Router
