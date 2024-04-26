@@ -1,6 +1,7 @@
 package com.gradehub.controllers;
 
 import com.gradehub.dto.SingleStudentDto;
+import com.gradehub.dto.StudentDto;
 import com.gradehub.dto.StudentLeaveDto;
 import com.gradehub.services.student.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,14 @@ public class StudentController {
         List<StudentLeaveDto> studentLeaveDtos = (List<StudentLeaveDto>) studentService.getallApppliedLeavesByStudentId(userId);
         if (studentLeaveDtos == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(studentLeaveDtos);
+    }
+
+    @PutMapping ("/{studentId}")
+    public ResponseEntity<?> updateStudent(@PathVariable Long studentId,  @RequestBody StudentDto studentDto){
+        StudentDto createdStudentDto =  studentService.updateStudent(studentId,studentDto);
+        if (createdStudentDto == null)
+            return new ResponseEntity<>("Somthing went wrong.", HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdStudentDto);
     }
 
 

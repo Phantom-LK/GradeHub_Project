@@ -2,12 +2,14 @@ package com.gradehub.controllers;
 
 import com.gradehub.dto.SingleStudentDto;
 import com.gradehub.dto.StudentDto;
+import com.gradehub.dto.StudentLeaveDto;
 import com.gradehub.services.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -51,6 +53,22 @@ public class AdminController {
         if (createdStudentDto == null)
             return new ResponseEntity<>("Somthing went wrong.", HttpStatus.BAD_REQUEST);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdStudentDto);
+    }
+
+    @GetMapping("/leaves")
+    public ResponseEntity<List<StudentLeaveDto>> getallApppliedLeaves  (){
+        List<StudentLeaveDto> studentLeaveDtos = adminService.getallApppliedLeaves();
+        if (studentLeaveDtos == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(studentLeaveDtos);
+    }
+
+    @GetMapping("/leaves/{leaveId}/{status}")
+    public ResponseEntity<?> changeLeaveStatus(@PathVariable Long leaveId, @PathVariable String status) {
+        StudentLeaveDto studentLeaveDto = adminService.changeLeaveStatus(leaveId, status);
+        if (studentLeaveDto == null) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.ok(studentLeaveDto);
     }
 
 }

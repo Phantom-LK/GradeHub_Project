@@ -1,8 +1,12 @@
 package com.gradehub.services.admin;
 import com.gradehub.dto.SingleStudentDto;
 import com.gradehub.dto.StudentDto;
+import com.gradehub.dto.StudentLeaveDto;
+import com.gradehub.entities.StudentLeave;
 import com.gradehub.entities.User;
+import com.gradehub.enums.StudentLeaveStatus;
 import com.gradehub.enums.UserRole;
+import com.gradehub.repositories.StudentLeaveRepository;
 import com.gradehub.repositories.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.BeanUtils;
@@ -10,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -18,8 +23,11 @@ public class AdminServiceImpl implements AdminService {
 
     private final UserRepository userRepository;
 
-    public AdminServiceImpl(UserRepository userRepository) {
+    private final StudentLeaveRepository studentLeaveRepository;
+
+    public AdminServiceImpl(UserRepository userRepository, StudentLeaveRepository studentLeaveRepository) {
         this.userRepository = userRepository;
+        this.studentLeaveRepository = studentLeaveRepository;
     }
 
     @PostConstruct
@@ -90,6 +98,29 @@ public class AdminServiceImpl implements AdminService {
             StudentDto updatedStudentDto = new StudentDto();
             updatedStudentDto.setId(updatedStudent.getId());
             return updatedStudentDto;
+        }
+        return null;
+    }
+
+    @Override
+    public List<StudentLeaveDto> getallApppliedLeaves() {
+        return  studentLeaveRepository.findAll().stream().map(StudentLeave::getStudentLeaveDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public StudentLeaveDto changeLeaveStatus(Long leaveId, String status) {
+        Optional<StudentLeave> optionalStudentLeave = studentLeaveRepository.findById(leaveId);
+        if (optionalStudentLeave.isPresent()){
+            StudentLeave studentLeave = optionalStudentLeave.get();
+            if (Objects.equals(status,"Approve")){
+                studentLeave.setStudentLeaveStatus(StudentLeaveStatus.Approved);
+            }else {
+                studentLeave.setStudentLeaveStatus(StudentLeaveStatus.Disapproved);
+            }
+            StudentLeave updatedStudentLeave = studentLeaveRepository.save(studentLeave);
+            StudentLeaveDto updatedStudentLeaveDto = new StudentLeaveDto();
+            updatedStudentLeaveDto.setId(updatedStudentLeave.getId());
+            return updatedStudentLeaveDto;
         }
         return null;
     }
