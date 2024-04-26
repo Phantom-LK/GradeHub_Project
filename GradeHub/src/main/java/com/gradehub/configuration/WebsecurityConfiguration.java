@@ -1,7 +1,6 @@
 package com.gradehub.configuration;
 
 import com.gradehub.Filters.JwtReqestFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,20 +19,24 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebsecurityConfiguration {
 
-    @Autowired
+    private final JwtReqestFilter jwtReqestFilter;
 
+    public WebsecurityConfiguration(JwtReqestFilter jwtReqestFilter) {
+        this.jwtReqestFilter = jwtReqestFilter;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/authenticate").permitAll()
+                .requestMatchers("/authenticate","/teacher").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("")
+                .authorizeHttpRequests().requestMatchers("/api/**")
                 .authenticated().and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+                .addFilterBefore(jwtReqestFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
     @Bean
