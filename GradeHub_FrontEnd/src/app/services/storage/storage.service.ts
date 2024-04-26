@@ -30,9 +30,8 @@ export class StorageService {
   }
 
   static hasToken(): boolean{
-    if(this.getToken()==null){
-      return false;
-    }
+    return this.getToken() !== null;
+    
 
   }
   static getUserRole():string{
