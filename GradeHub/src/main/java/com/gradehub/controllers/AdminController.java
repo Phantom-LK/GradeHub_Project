@@ -1,8 +1,6 @@
 package com.gradehub.controllers;
 
-import com.gradehub.dto.SingleStudentDto;
-import com.gradehub.dto.StudentDto;
-import com.gradehub.dto.StudentLeaveDto;
+import com.gradehub.dto.*;
 import com.gradehub.services.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -69,6 +67,32 @@ public class AdminController {
             return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.ok(studentLeaveDto);
+    }
+    // Teacher
+    @PostMapping("/teacher")
+    public ResponseEntity<?> postTeacher(@RequestBody TeacherDto teacherDto){
+        TeacherDto createdTeacherDto =  adminService.postTeacher(teacherDto);
+        if (createdTeacherDto == null)
+            return new ResponseEntity<>("Somthing went wrong.", HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTeacherDto);
+    }
+
+    @GetMapping("/teachers")
+    public ResponseEntity<List<TeacherDto>> getAllTeachers(){
+        List<TeacherDto> allTeachers =  adminService.getAllTeachers();
+        return ResponseEntity.ok(allTeachers);
+    }
+    @DeleteMapping("/teacher/{teacherId}")
+    public  ResponseEntity<Void> deleteTeacher(@PathVariable Long teacherId){
+        adminService.deleteTeacher(teacherId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/teacher/{teacherId}")
+    public ResponseEntity<SingleTeacherDto> getTeacherById (@PathVariable Long teacherId){
+        SingleTeacherDto singleTeacherDto = adminService.getTeacherById(teacherId);
+        if (singleTeacherDto == null) return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(singleTeacherDto);
     }
 
 }

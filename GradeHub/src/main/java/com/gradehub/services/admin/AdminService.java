@@ -1,8 +1,6 @@
 package com.gradehub.services.admin;
 
-import com.gradehub.dto.SingleStudentDto;
-import com.gradehub.dto.StudentDto;
-import com.gradehub.dto.StudentLeaveDto;
+import com.gradehub.dto.*;
 
 import java.util.List;
 
@@ -20,4 +18,12 @@ public interface AdminService {
     List<StudentLeaveDto> getallApppliedLeaves();
 
     StudentLeaveDto changeLeaveStatus(Long leaveId, String status);
+
+    TeacherDto postTeacher(TeacherDto teacherDto);
+
+    List<TeacherDto> getAllTeachers();
+
+    void deleteTeacher(Long teacherId);
+
+    SingleTeacherDto getTeacherById(Long teacherId);
 }

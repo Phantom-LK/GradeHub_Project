@@ -1,12 +1,12 @@
 package com.gradehub.services.admin;
-import com.gradehub.dto.SingleStudentDto;
-import com.gradehub.dto.StudentDto;
-import com.gradehub.dto.StudentLeaveDto;
+import com.gradehub.dto.*;
 import com.gradehub.entities.StudentLeave;
+import com.gradehub.entities.Teacher;
 import com.gradehub.entities.User;
 import com.gradehub.enums.StudentLeaveStatus;
 import com.gradehub.enums.UserRole;
 import com.gradehub.repositories.StudentLeaveRepository;
+import com.gradehub.repositories.TeacherRepository;
 import com.gradehub.repositories.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.BeanUtils;
@@ -24,10 +24,12 @@ public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
 
     private final StudentLeaveRepository studentLeaveRepository;
+    private final TeacherRepository teacherRepository;
 
-    public AdminServiceImpl(UserRepository userRepository, StudentLeaveRepository studentLeaveRepository) {
+    public AdminServiceImpl(UserRepository userRepository, StudentLeaveRepository studentLeaveRepository, TeacherRepository teacherRepository) {
         this.userRepository = userRepository;
         this.studentLeaveRepository = studentLeaveRepository;
+        this.teacherRepository = teacherRepository;
     }
 
     @PostConstruct
@@ -122,6 +124,31 @@ public class AdminServiceImpl implements AdminService {
             updatedStudentLeaveDto.setId(updatedStudentLeave.getId());
             return updatedStudentLeaveDto;
         }
+        return null;
+    }
+
+    @Override
+    public TeacherDto postTeacher(TeacherDto teacherDto) {
+        Teacher teacher = new Teacher();
+        BeanUtils.copyProperties(teacherDto,teacher);
+        Teacher createdTeacher = teacherRepository.save(teacher);
+        TeacherDto createdTeacherDto = new TeacherDto();
+        createdTeacherDto.setId(createdTeacher.getId());
+        return createdTeacherDto;
+    }
+
+    @Override
+    public List<TeacherDto> getAllTeachers() {
+        return teacherRepository.findAll().stream().map(Teacher::getTeacherDto).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteTeacher(Long teacherId) {
+        teacherRepository.deleteById(teacherId);
+    }
+
+    @Override
+    public SingleTeacherDto getTeacherById(Long teacherId) {
         return null;
     }
 
