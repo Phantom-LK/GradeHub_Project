@@ -13,11 +13,14 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AllStudentsComponent } from './admin-components/all-students/all-students.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    PostStudentComponent
+    PostStudentComponent,
+    AllStudentsComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +35,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule
     
   ]
 })
