@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <title>Grade Entry</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Grade Entry</h1>
+      <form>
+        <div class="form-group">
+          <label for="courseSelect">Course:</label>
+          <select id="courseSelect" class="form-control" [(ngModel)]="selectedCourse">
+            <option *ngFor="let course of courses" [value]="course">{{ course.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="studentSelect">Student:</label>
+          <select id="studentSelect" class="form-control" [(ngModel)]="selectedStudent">
+            <option *ngFor="let student of students" [value]="student">{{ student.name }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="gradeInput">Grade:</label>
+          <input id="gradeInput" type="number" class="form-control" [(ngModel)]="grade">
+        </div>
+        <button (click)="saveGrade()" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </body>
+</html>
