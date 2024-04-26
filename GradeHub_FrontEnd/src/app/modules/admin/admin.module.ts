@@ -6,6 +6,12 @@ import { DashboardComponent } from './admin-components/dashboard/dashboard.compo
 import { PostStudentComponent } from './admin-components/post-student/post-student.component';
 
 
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -14,7 +20,12 @@ import { PostStudentComponent } from './admin-components/post-student/post-stude
   imports: [
     CommonModule,
     AdminRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule
+    
   ]
 })
 export class AdminModule { }
