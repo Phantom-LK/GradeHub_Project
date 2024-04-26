@@ -149,6 +149,32 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public SingleTeacherDto getTeacherById(Long teacherId) {
+        Optional<Teacher> optionalTeacher = teacherRepository.findById(teacherId);
+        if (optionalTeacher.isPresent()){
+            SingleTeacherDto singleTeacherDto = new SingleTeacherDto();
+            singleTeacherDto.setTeacherDto(optionalTeacher.get().getTeacherDto());
+            return singleTeacherDto;
+        }
+        return null;
+    }
+
+    @Override
+    public TeacherDto updateTeacher(Long teacherId, TeacherDto teacherDto) {
+        Optional<Teacher> optionalTeacher = teacherRepository.findById(teacherId);
+            if (optionalTeacher.isPresent()){
+                Teacher updateTeacher = optionalTeacher.get();
+                updateTeacher.setName(teacherDto.getName());
+                updateTeacher.setGender(teacherDto.getGender());
+                updateTeacher.setAddress(teacherDto.getAddress());
+                updateTeacher.setDob(teacherDto.getDob());
+                updateTeacher.setDepartment(teacherDto.getDepartment());
+                updateTeacher.setQualification(teacherDto.getQualification());
+                Teacher updatedTeacher = teacherRepository.save(updateTeacher);
+                TeacherDto updatedTeacherDto = new TeacherDto();
+                updatedTeacherDto.setId(updatedTeacher.getId());
+                return updatedTeacherDto;
+
+        }
         return null;
     }
 

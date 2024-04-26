@@ -26,4 +26,6 @@ public interface AdminService {
     void deleteTeacher(Long teacherId);
 
     SingleTeacherDto getTeacherById(Long teacherId);
+
+    TeacherDto updateTeacher(Long teacherId, TeacherDto teacherDto);
 }

@@ -94,5 +94,12 @@ public class AdminController {
         if (singleTeacherDto == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(singleTeacherDto);
     }
+    @PutMapping ("/teacher/{teacherId}")
+    public ResponseEntity<?> updateStudent(@PathVariable Long teacherId,  @RequestBody TeacherDto teacherDto){
+        TeacherDto createdTeacherDto =  adminService.updateTeacher(teacherId,teacherDto);
+        if (createdTeacherDto == null)
+            return new ResponseEntity<>("Somthing went wrong.", HttpStatus.BAD_REQUEST);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTeacherDto);
+    }
 
 }

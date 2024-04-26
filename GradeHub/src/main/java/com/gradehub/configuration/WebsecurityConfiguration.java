@@ -29,9 +29,9 @@ public class WebsecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/authenticate").permitAll()
+                .requestMatchers("/authenticate","/teacher").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("")
+                .authorizeHttpRequests().requestMatchers("/api/**")
                 .authenticated().and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
