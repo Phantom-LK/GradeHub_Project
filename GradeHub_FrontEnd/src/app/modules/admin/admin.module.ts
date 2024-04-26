@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AdminRoutingModule } from './admin-routing.module';
 import { DashboardComponent } from './admin-components/dashboard/dashboard.component';
 import { PostStudentComponent } from './admin-components/post-student/post-student.component';
@@ -13,7 +13,8 @@ import { PostStudentComponent } from './admin-components/post-student/post-stude
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    HttpClientModule
   ]
 })
 export class AdminModule { }
