@@ -1,14 +1,14 @@
-<div class="card-container", fxLayout.xs="column" fxLayoutGap="16px">
+<div class="card-container", fxLayout.xs="column" fxLayoutGap="16px" *ngFor="let stuudent of students">
     <mat-card-header style="background-color: #3f51b5;">
-        <mat-card-title style="color: white;">Name:</mat-card-title>
-        <mat-card-subtitle style="color: white;">Facualty:</mat-card-subtitle>
+        <mat-card-title style="color: white;">Name:<strong>{{stuudent.name}}</strong></mat-card-title>
+        <mat-card-subtitle style="color: white;">Facualty:<strong>{{stuudent.Facualty}}</strong></mat-card-subtitle>
     </mat-card-header>
     <mat-card-content style="margin-top: 10px;">
-        <p>Email:</p>
-        <p>Father Name:</p>
-        <p>Mother Name:</p>
-        <p>Date od Birth:</p>
-        <p>Gender:</p>
-        <p>Address:</p>
+        <p>Email:<strong>{{stuudent.email}}</strong></p>
+        <p>Father Name:<strong>{{stuudent.fatherName}}</strong></p>
+        <p>Mother Name:<strong>{{stuudent.motherName}}</strong></p>
+        <p>Date od Birth:<strong>{{stuudent.dob | date:"MMM,dd,yyyy" }}</strong></p>
+        <p>Gender:<strong>{{stuudent.gender}}</strong></p>
+        <p>Address:<strong>{{stuudent.address}}</strong></p>
     </mat-card-content>
 </div>

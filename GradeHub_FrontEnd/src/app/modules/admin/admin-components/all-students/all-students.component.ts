@@ -8,6 +8,8 @@ import { AdminService } from '../../admin-service/admin.service';
 })
 export class AllStudentsComponent {
 
+  students: any;
+
   constructor(private service: AdminService){
   }
 
@@ -18,6 +20,7 @@ export class AllStudentsComponent {
   getAllStudents(){
     this.service.getAllStudents().subscribe((res)=>{
       console.log(res)
+      this.students=res;
     })
   }
 
