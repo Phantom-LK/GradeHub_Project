@@ -1,0 +1,38 @@
+.parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
+.child{
+   width: 100%;
+   max-width: 400px; 
+}
+
+.form-title{
+    margin-left: 130px;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-form-feild{
+    width: 100%;
+}
+
+button{
+    width: 100%;
+}
+
+@media (max-width:768px) {
+    .parent{
+        padding: 0 10px;
+    }
+    .child{
+        max-width: 100%;
+    }
+    
+}
