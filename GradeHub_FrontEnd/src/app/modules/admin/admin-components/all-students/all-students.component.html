@@ -12,6 +12,7 @@
         <p>Address:<strong>{{stuudent.address}}</strong></p>
     </mat-card-content>
     <mat-card-actions>
+        <button mat-button color = "accent" routerLink="/admin/student/{{stuudent.id}}">Update</button>
         <button mat-button color = "warn" (click)="deleteAllstudent(stuudent.id)">Delete</button>
     </mat-card-actions>
 </div>
