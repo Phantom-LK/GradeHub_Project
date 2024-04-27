@@ -60,6 +60,12 @@ export class StorageService {
     return user.role;
   }
 
+  static getUserId(){
+    const user = this.getUser();
+    if(user == null) return'';
+    return user.UserId;
+  }
+
   static isAdminLoggedIn(): boolean {
     if (this.getToken() == null) {
       return false;
