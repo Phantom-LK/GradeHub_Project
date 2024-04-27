@@ -13,7 +13,7 @@ export class PostStudentComponent {
 
   Faculty:  string[] = ["Computer","Science","Engineering","Arts and Humanities", "Business",];
   Gender: string[ ] = [ "Male", "Female","Other" ];
-  isSpinning: boolean
+  isSpining: boolean
   validateForm: FormGroup
 
   confirmationValidator = (contol: FormGroup):{[s:string]: boolean} =>{
@@ -32,7 +32,7 @@ export class PostStudentComponent {
     private snackbar: MatSnackBar
    ){}
 
-   ngOnInit():void{
+   ngOnInit(){
     this.validateForm = this.fb.group({
       email:['',Validators.required],
       name:['',Validators.required],

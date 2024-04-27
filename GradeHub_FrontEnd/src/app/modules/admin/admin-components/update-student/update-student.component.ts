@@ -12,7 +12,7 @@ export class UpdateStudentComponent {
 
   studentId: number = this.activatedRoute.snapshot.params['studentId'];
   validateForm: FormGroup;
-  isSpinning: boolean;
+  isSpining: boolean;
   Faculty:  string[] = ["Computer","Science","Engineering","Arts and Humanities", "Business",];
   Gender: string[ ] = [ "Male", "Female","Other" ];
 
