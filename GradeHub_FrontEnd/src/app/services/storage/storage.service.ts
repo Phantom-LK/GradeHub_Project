@@ -68,7 +68,7 @@ export class StorageService {
 
   static isAdminLoggedIn(): boolean {
     if (this.getToken() == null) {
-      return false;
+      return true;
     }
     const role: string = this.getUserRole();
     return role === 'ADMIN';
