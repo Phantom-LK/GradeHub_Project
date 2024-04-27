@@ -4,11 +4,13 @@ import { DashboardComponent } from './admin-components/dashboard/dashboard.compo
 import { AdminGuard } from '../../guards/admin-guard/admin.guard';
 import { PostStudentComponent } from './admin-components/post-student/post-student.component';
 import { AllStudentsComponent } from './admin-components/all-students/all-students.component';
+import {UpdateStudentComponent} from './admin-components/update-student/update-student.component';
 
 const routes: Routes = [
   {path:"dashboard",component:DashboardComponent,canActivate:[AdminGuard]},
   {path:"student",component:PostStudentComponent,canActivate:[AdminGuard]},
   {path:"student",component:AllStudentsComponent,canActivate:[AdminGuard]},
+  {path:"student/:studentId",component:UpdateStudentComponent,canActivate:[AdminGuard]},
 ];
 
 @NgModule({

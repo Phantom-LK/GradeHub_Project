@@ -20,10 +20,26 @@ export class AdminService {
   }
   getAllStudents():Observable<any> {
     return this.http.get<[]>(BASIC_URL + "api/admin/allStudents",{
-        headers:this.createAuthorizationHeader()
+        headers:this.createAuthorizationHeader( )
     }
   )
   }
+
+  deleteStudents(studentId:any):Observable<any> {
+    return this.http.delete<[]>(BASIC_URL + 'api/admin/student/${studentId}',{
+        headers:this.createAuthorizationHeader( )
+    }
+  )
+  }
+
+  getStudentById(studennt:number):Observable<any> {
+    return this.http.get<[]>(BASIC_URL + 'api/admin/student/${studentID}',{
+        headers:this.createAuthorizationHeader( )
+    }
+  )
+  }
+
+
   createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
     return authHeaders.set(

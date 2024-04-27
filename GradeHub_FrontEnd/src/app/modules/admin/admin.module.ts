@@ -15,12 +15,14 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AllStudentsComponent } from './admin-components/all-students/all-students.component';
 import {MatCardModule} from '@angular/material/card';
+import { UpdateStudentComponent } from './admin-components/update-student/update-student.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     PostStudentComponent,
-    AllStudentsComponent
+    AllStudentsComponent,
+    UpdateStudentComponent
   ],
   imports: [
     CommonModule,
